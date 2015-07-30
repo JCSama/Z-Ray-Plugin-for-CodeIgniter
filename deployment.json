@@ -1,0 +1,9 @@
+{
+  "name" : "codeigniter",
+  "display_name" : "CodeIgniter",
+  "version" : "1.0.0",
+  "type": ["zray"],
+  "logo": "logo.png",
+  "eula": "LICENSE.txt",
+  "readme": "README.txt"
+}

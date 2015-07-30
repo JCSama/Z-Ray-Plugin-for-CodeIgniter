@@ -1,0 +1,30 @@
+<?php 
+$tableParams = array(
+	'tableId' 			=> 'codeigniter-helpers-table',
+    'tableWidth'        => '4',
+);
+echo $this->zrayTable($tableParams);
+?>
+
+<script type="text/javascript">
+(function() {
+
+	var storage = zray.getStorage('CodeIgniterHelpers');
+
+	// create main table
+	var maintable = zray.createTable(storage, jQuery('#<?php echo $tableParams['tableId']; ?>'));
+	maintable.setColumns([
+		{
+			"label": "Name",
+			"propertyName": "name",
+			"sortable": true,
+			"width" : "100%"
+		}
+	]);
+	// create main table - end
+	zray.createSearch(storage, jQuery('#<?php echo $params['searchId']; ?>'), maintable);
+	zray.registerDataHandler('CodeIgniter', 'helpers', function(extensionData, requestData) {
+		storage.setData(extensionData);
+	});
+})();
+</script>

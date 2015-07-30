@@ -1,0 +1,40 @@
+<?php 
+$tableParams = array(
+	'tableId' 			=> 'codeigniter-configuration-table',
+    'tableWidth'        => '4',
+);
+echo $this->zrayTable($tableParams);
+?>
+
+<script type="text/javascript">
+(function() {
+	var storage = zray.getStorage('CodeIgniterConfiguration');
+
+	// create main table
+	var maintable = zray.createTable(storage, jQuery('#<?php echo $tableParams['tableId']; ?>'));
+	maintable.setColumns([
+		{
+			"label": "Name",
+			"propertyName": "name",
+			"sortable": true,
+		},
+		{
+			"label": "Value",
+			"propertyName": "value",
+			"sortable": false,
+			"getHtml": function(value, record) {
+				return value;
+			}
+		}
+	]);
+	// create main table - end
+
+	// create pager and search
+	zray.createPager(storage, jQuery('#<?php echo $params['pagerId']; ?>'));
+	zray.createSearch(storage, jQuery('#<?php echo $params['searchId']; ?>'), maintable);
+	
+	zray.registerDataHandler('CodeIgniter', 'configuration', function(extensionData, requestData) {
+		storage.setData(extensionData);
+	});
+})();
+</script>

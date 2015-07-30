@@ -1,0 +1,20 @@
+<?php 
+$tableParams = array(
+	'tableId' 			=> 'codeigniter-hooks-table',
+    'tableWidth'        => '4',
+);
+echo $this->zrayTable($tableParams); 
+?>
+
+<script type="text/javascript">
+(function() {
+	var storage = zray.getStorage('CodeIgniterHooks');
+
+	// create main table
+	var maintable = zray.createTreeTable(storage, jQuery('#<?php echo $tableParams['tableId']; ?>'));
+	zray.createSearch(storage, jQuery('#<?php echo $params['searchId']; ?>'), maintable);	
+	zray.registerDataHandler('CodeIgniter', 'hooks', function(extensionData, requestData) {
+		storage.setData(extensionData);
+	});
+})();
+</script>

@@ -1,0 +1,37 @@
+<?php 
+$tableParams = array(
+	'tableId' 			=> 'codeigniter-views-table',
+    'tableWidth'        => '4',
+);
+echo $this->zrayTable($tableParams);
+?>
+
+<script type="text/javascript">
+(function() {
+
+	var storage = zray.getStorage('CodeIgniterViews');
+
+	// create main table
+	var maintable = zray.createTable(storage, jQuery('#<?php echo $tableParams['tableId']; ?>'));
+	maintable.setColumns([
+		{
+			"label": "Name",
+			"propertyName": "name",
+			"sortable": true,
+		},
+		{
+			"label": "Path",
+			"propertyName": "path",
+			"sortable": false,
+			"getHtml": function(value, record) {
+				return value;
+			}
+		}
+	]);
+	// create main table - end
+	zray.registerDataHandler('CodeIgniter', 'views', function(extensionData, requestData) {
+	console.log(extensionData);
+		storage.setData(extensionData);
+	});
+})();
+</script>

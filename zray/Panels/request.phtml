@@ -1,0 +1,21 @@
+<?php 
+$tableParams = array(
+	'tableId' 			=> 'codeigniter-request-table',
+    'tableWidth'        => '4',
+);
+echo $this->zrayTable($tableParams); 
+?>
+
+<script type="text/javascript">
+(function() {
+	var storage = zray.getStorage('CodeIgniterRequest');
+
+	// create main table
+	var maintable = zray.createTreeTable(storage, jQuery('#<?php echo $tableParams['tableId']; ?>'));
+	
+	zray.createSearch(storage, jQuery('#<?php echo $params['searchId']; ?>'), maintable);	
+	zray.registerDataHandler('CodeIgniter', 'request', function(extensionData, requestData) {
+		storage.setData(extensionData);
+	});
+})();
+</script>
