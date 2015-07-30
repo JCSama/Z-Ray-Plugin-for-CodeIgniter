@@ -11,3 +11,12 @@ CodeIgniter plugin provides valuable information on codeIgniter applications, ma
 - **Models**: shows the loaded models,
 - **Helpers**: display the loaded helpers,
 - **Request**: provides information on the current route of the CodeIgniter application, such as the controller name, the action name and the parameters.
+
+
+Installation
+=============
+
+This plugin is dedicated to ZendServer 8.5 with Zray Extension
+
+Zip all files from this repository and go to ZendServer GUI -> Plugins -> Manage Plugins,
+click on Deploy Plugins, upload the Plugin Package and follow the instructions.
