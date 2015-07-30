@@ -16,7 +16,12 @@ CodeIgniter plugin provides valuable information on codeIgniter applications, ma
 Installation
 =============
 
-This plugin is dedicated to ZendServer 8.5 with Zray Extension
+This plugin is dedicated to ZendServer 8.5 with Zray Extension.
+
+Supported CodeIgniter Versoin >= 2.2.0
 
 Zip all files from this repository and go to ZendServer GUI -> Plugins -> Manage Plugins,
 click on Deploy Plugins, upload the Plugin Package and follow the instructions.
+
+After the installation go to :
+Zend DevBar -> CodeIgniter Panel -> Installation Panel, and follow the instructions.
