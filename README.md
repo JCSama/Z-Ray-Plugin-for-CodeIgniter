@@ -1,7 +1,7 @@
 Zend Server Zray Plugin for CodeIgniter
 =======================================
 
-CodeIgniter plugin provides valuable information on codeIgniter applications, making debugging easy and simple. Z-Ray gives a complete picture of your CodeIgniter environment - including all loaded views, models, helpers, configuration files and stored sessions.
+CodeIgniter plugin provides valuable information on codeIgniter applications, making debugging easy and simple. Z-Ray gives a complete picture of your CodeIgniter environment - including all loaded views, models, helpers, hooks and configuration files.
 
 - **Installation**: shows the steps to complete the installation,
 - **Configuration**: shows the configuration files variables,
