@@ -140,7 +140,7 @@ class CodeIgniter
 }
 
 $zre = new \ZRayExtension('CodeIgniter');
-$zre->setEnabledAfter('MY_Loader::_ci_load');
+$zre->setEnabledAfter('MY_Loader::initialize');
 
 $codeIgniter = new CodeIgniter();
 

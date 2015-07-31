@@ -37,6 +37,10 @@ class MY_Loader extends CI_Loader
     {
         return $this->_ci_models;
     }
+    
+    public function initialize(){
+    	parent::initialize();
+    }
 
     /**
      * Internal CI Data Loader
