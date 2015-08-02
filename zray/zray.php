@@ -33,6 +33,7 @@ class CodeIgniter
         $storage['hooks'] = $this->loadHooks();
         $storage['views'] = $this->loadViews();
         $storage['request'] = $this->getControllerInfo();
+        $storage['cache'] = $this->getCacheInfo();
     }
 
     private function loadConfiguration()
@@ -136,6 +137,19 @@ class CodeIgniter
         );
         
         return $info;
+    }
+    
+    private function getCacheInfo(){
+	    $cacheInfos = array();
+    	if($this->ci->cache){
+    		$cacheInfo = $this->ci->cache->cache_info();
+    		
+    		foreach($cacheInfo as $item){
+    			$cacheInfos[$item['name']] = $this->ci->cache->get($item['name']);
+    		}
+    	}
+    	
+    	return $cacheInfos;
     }
 }
 
