@@ -145,7 +145,7 @@ class CodeIgniter
     		$cacheInfo = $this->ci->cache->cache_info();
     		
     		foreach($cacheInfo as $item){
-    			$cacheInfos[$item['name']] = $this->ci->cache->get($item['name']);
+    			$cacheInfos[$item['name']] = array_merge($cacheInfo[$item['name']], array('items' => $this->ci->cache->get($item['name'])));
     		}
     	}
     	

@@ -9,8 +9,9 @@ CodeIgniter plugin provides valuable information on codeIgniter applications, ma
 - **Hooks**: displays the active Hooks,
 - **Hooks**: shows the loaded libraries,
 - **Models**: shows the loaded models,
-- **Helpers**: display the loaded helpers,
+- **Helpers**: displays the loaded helpers,
 - **Request**: provides information on the current route of the CodeIgniter application, such as the controller name, the action name and the parameters.
+— **Cache**: provides informations about the cache like (size, path, items..)
 
 
 Installation
