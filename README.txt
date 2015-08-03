@@ -7,7 +7,7 @@ CodeIgniter plugin provides valuable information on codeIgniter applications, ma
 - **Configuration**: shows the configuration files variables,
 - **Views**: shows information on currently loaded CodeIgniter views, including their application file path,
 - **Hooks**: displays the active Hooks,
-- **Hooks**: shows the loaded libraries,
+- **Libraries**: shows the loaded libraries,
 - **Models**: shows the loaded models,
 - **Helpers**: displays the loaded helpers,
 - **Request**: provides information on the current route of the CodeIgniter application, such as the controller name, the action name and the parameters.
