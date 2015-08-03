@@ -12,13 +12,6 @@ class Module extends \ZRay\ZRayModule
                 'name' => 'CodeIgniter',
             ),
             'panels' => array(
-                'cache' => array(
-                    'display' => true,
-                    'logo' => 'images/cache.png',
-                    'menuTitle' => 'Cache',
-                    'panelTitle' => 'Cache Info',
-                    'searchId' => 'codeigniter-cache-search',
-                ),
                 'request' => array(
                     'display' => true,
                     'logo' => 'images/request.png',
