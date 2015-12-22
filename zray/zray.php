@@ -143,10 +143,12 @@ class CodeIgniter
 	$cacheInfos = array();
     	if(isset($this->ci->cache)){
     		$cacheInfo = $this->ci->cache->cache_info();
-    		
-    		foreach($cacheInfo as $item){
-    			$cacheInfos[$item['name']] = array_merge($cacheInfo[$item['name']], array('items' => $this->ci->cache->get($item['name'])));
-    		}
+
+		if(is_array($cacheInfo) && count($cacheInfo)){
+			foreach($cacheInfo as $item){
+				$cacheInfos[$item['name']] = array_merge($cacheInfo[$item['name']], array('items' => $this->ci->cache->get($item['name'])));
+			}
+		}
     	}
     	
     	return $cacheInfos;
