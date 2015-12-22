@@ -140,8 +140,8 @@ class CodeIgniter
     }
     
     private function getCacheInfo(){
-	    $cacheInfos = array();
-    	if($this->ci->cache){
+	$cacheInfos = array();
+    	if(isset($this->ci->cache)){
     		$cacheInfo = $this->ci->cache->cache_info();
     		
     		foreach($cacheInfo as $item){
