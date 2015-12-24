@@ -23,6 +23,5 @@ Supported CodeIgniter Versoin >= 2.2.0
 
 1. ZIP all files from this repository and go to ZendServer GUI -> Plugins -> Manage Plugins.
 2. Click on Deploy Plugins, upload the Plugin Package and follow the instructions.
-
-After the installation go to :
+3. After the installation go to :
 Z-Ray -> CodeIgniter Panel -> Installation Panel, and follow the specified instructions.
