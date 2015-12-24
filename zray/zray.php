@@ -11,19 +11,21 @@ class CodeIgniter
 
     public function init($context, &$storage)
     {
-    
-    	if(null !== $this->ci)
-	        return;
-	        
+
         $storage['installation']['current_version'] = CI_VERSION;
         $storage['installation']['supported_version'] = static::SUPPORTED_CI_VERSION;
         $storage['installation']['is_supported_version'] = true;
-        
+        $storage['installation']['is_complete'] = false;
+
         if (version_compare(CI_VERSION, static::SUPPORTED_CI_VERSION, '<')) {
 	        $storage['installation']['is_supported_version'] = false;
             return; //this extension support only C.I version >= 2.2.0
         }
-        
+
+        if(in_array('get_views', get_class_methods($context['locals']['CI']->load))){
+            $storage['installation']['is_complete'] = true;
+        }
+
         $this->ci =& get_instance();
             
         $storage['configuration'] = $this->loadConfiguration();
@@ -34,6 +36,10 @@ class CodeIgniter
         $storage['views'] = $this->loadViews();
         $storage['request'] = $this->getControllerInfo();
         $storage['cache'] = $this->getCacheInfo();
+    }
+
+    public function checkInstallation($context, &$storage){
+        $storage['installation']['is_complete'] = true;
     }
 
     private function loadConfiguration()
@@ -138,25 +144,25 @@ class CodeIgniter
         
         return $info;
     }
-    
-    private function getCacheInfo(){
-	$cacheInfos = array();
-    	if(isset($this->ci->cache)){
-    		$cacheInfo = $this->ci->cache->cache_info();
 
-		if(is_array($cacheInfo) && count($cacheInfo)){
-			foreach($cacheInfo as $item){
-				$cacheInfos[$item['name']] = array_merge($cacheInfo[$item['name']], array('items' => $this->ci->cache->get($item['name'])));
-			}
-		}
-    	}
-    	
-    	return $cacheInfos;
+    private function getCacheInfo(){
+        $cacheInfos = array();
+        if(isset($this->ci->cache)){
+            $cacheInfo = $this->ci->cache->cache_info();
+            if(is_array($cacheInfo) && count($cacheInfo)){
+                foreach($cacheInfo as $item){
+                    $cacheInfos[$item['name']] = array_merge($cacheInfo[$item['name']], array('items' => $this->ci->cache->get($item['name'])));
+                }
+            }
+        }
+
+        return $cacheInfos;
     }
 }
 
 $zre = new \ZRayExtension('CodeIgniter');
-$zre->setEnabledAfter('MY_Loader::initialize');
+
+$zre->setEnabledAfter('CI_Loader::initialize');
 
 $codeIgniter = new CodeIgniter();
 

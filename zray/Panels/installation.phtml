@@ -1,16 +1,20 @@
 <script type="text/javascript">
 zray.registerExtensionLoaded('CodeIgniter', function(extensionData, requestData) {
-	jQuery('#codeigniter-installation-steps').remove();
+//	jQuery('#codeigniter-installation-steps').remove();
 //	jQuery('#codeigniter-extension-not-installed').css('display', 'block');
 });
 
 zray.registerDataHandler('CodeIgniter', 'installation', function(extensionData, requestData) {
+    console.log(extensionData);
 	if(extensionData[2] == false){
-		jQuery('#codeigniter-extension-not-installed').css('display', 'block');
-		jQuery('#codeigniter-extension-installed').css('display', 'none');
 		jQuery('#codeigniter-current-version').text(extensionData[0]);
-		jQuery('#codeigniter-supported-version').text(extensionData[1]);
-	}
+        jQuery('#codeigniter-supported-version').text(extensionData[1]);
+        jQuery('#codeigniter-extension-not-installed').css('display', 'block');
+        jQuery('#codeigniter-installation-steps').css('display', 'none');
+    }
+    else if(extensionData[3] == false){
+        jQuery('#codeigniter-installation-steps').css('display', 'block');
+    }
 	else{
 		jQuery('div[data-name="zrayExtension:CodeIgniter/installation"]').remove();
 	}

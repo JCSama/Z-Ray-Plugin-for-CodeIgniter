@@ -62,7 +62,6 @@ class Module extends \ZRay\ZRayModule
                 ),
                 'configuration' => array(
                     'display' => true,
-                    'alwaysShow' => true,
                     'logo' => 'images/config.png',
                     'menuTitle' => 'Configuration',
                     'panelTitle' => 'Configuration',
