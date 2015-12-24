@@ -38,10 +38,6 @@ class CodeIgniter
         $storage['cache'] = $this->getCacheInfo();
     }
 
-    public function checkInstallation($context, &$storage){
-        $storage['installation']['is_complete'] = true;
-    }
-
     private function loadConfiguration()
     {
         $config = array();
