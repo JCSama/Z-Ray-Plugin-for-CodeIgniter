@@ -166,13 +166,14 @@ class CodeIgniter
         $phpcs->initStandard('CodeIgniter');
         $phpcs->setAllowedFileExtensions(array('PHP'));
 
-        $folders = array('controllers', 'models', 'helpers');
+        $folders = array('controllers', 'libraries', 'models', 'helpers');
         $loadedFiles = array_merge(
             array($this->ci->router->class), // Controller
-            $this->ci->load->get_models(), // Models
+            array_keys($this->loadLibraries()), // Libraries
+ 			$this->ci->load->get_models(), // Models
             array_keys($this->ci->load->get_helpers()) // Helpers
         );
-
+        
         array_walk($loadedFiles, function(&$item){
             $item = strtolower($item) . '.php';
         });

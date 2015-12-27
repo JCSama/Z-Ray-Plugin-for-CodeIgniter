@@ -1,3 +1,9 @@
+## 1.2.0 (2015-12-27)
+
+Changes:
+
+- New **CodingStandard** panel : Check your Controllers, Models, Librairies, Helpers against Codeigniter coding standards, https://www.codeigniter.com/user_guide/general/styleguide.html
+
 ## 1.1.2 (2015-12-24)
 
 Bug fix:
