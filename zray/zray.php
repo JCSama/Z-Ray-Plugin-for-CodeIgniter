@@ -18,16 +18,16 @@ class CodeIgniter
         $storage['installation']['is_complete'] = false;
 
         if (version_compare(CI_VERSION, static::SUPPORTED_CI_VERSION, '<')) {
-	        $storage['installation']['is_supported_version'] = false;
+            $storage['installation']['is_supported_version'] = false;
             return; //this extension support only C.I version >= 2.2.0
         }
 
-        if(in_array('get_views', get_class_methods($context['locals']['CI']->load))){
+        if (in_array('get_views', get_class_methods($context['locals']['CI']->load))) {
             $storage['installation']['is_complete'] = true;
         }
 
         $this->ci =& get_instance();
-            
+
         $storage['configuration'] = $this->loadConfiguration();
         $storage['models'] = $this->loadModels();
         $storage['libraries'] = $this->loadLibraries();
@@ -36,6 +36,7 @@ class CodeIgniter
         $storage['views'] = $this->loadViews();
         $storage['request'] = $this->getControllerInfo();
         $storage['cache'] = $this->getCacheInfo();
+        $storage['codingstandard'] = $this->checkCodingStandard();
     }
 
     private function loadConfiguration()
@@ -137,16 +138,17 @@ class CodeIgniter
             'method' => strtoupper($method),
             'parameters' => $parameters
         );
-        
+
         return $info;
     }
 
-    private function getCacheInfo(){
+    private function getCacheInfo()
+    {
         $cacheInfos = array();
-        if(isset($this->ci->cache)){
+        if (isset($this->ci->cache)) {
             $cacheInfo = $this->ci->cache->cache_info();
-            if(is_array($cacheInfo) && count($cacheInfo)){
-                foreach($cacheInfo as $item){
+            if (is_array($cacheInfo) && count($cacheInfo)) {
+                foreach ($cacheInfo as $item) {
                     $cacheInfos[$item['name']] = array_merge($cacheInfo[$item['name']], array('items' => $this->ci->cache->get($item['name'])));
                 }
             }
@@ -154,15 +156,68 @@ class CodeIgniter
 
         return $cacheInfos;
     }
+
+    private function checkCodingStandard()
+    {
+        require_once __DIR__ . '/vendor/PHP_CodeSniffer-2.2.0/CodeSniffer.php';
+        $phpcs = new \PHP_CodeSniffer();
+        $arguments = array('--standard=CodeIgniter', '-s');
+        $_SERVER['argv'] = isset($_SERVER['argv']) ? $_SERVER['argv'] + $arguments : $arguments;
+        $phpcs->initStandard('CodeIgniter');
+        $phpcs->setAllowedFileExtensions(array('PHP'));
+
+        $folders = array('controllers', 'models', 'helpers');
+        $loadedFiles = array_merge(
+            array($this->ci->router->class), // Controller
+            $this->ci->load->get_models(), // Models
+            array_keys($this->ci->load->get_helpers()) // Helpers
+        );
+
+        array_walk($loadedFiles, function(&$item){
+            $item = strtolower($item) . '.php';
+        });
+
+        $reports = array();
+
+        foreach($folders as $folder){
+            $path = APPPATH . $folder . '/';
+            $directoryIterator = new \RecursiveDirectoryIterator($path);
+
+            foreach($directoryIterator as $fileInfo){
+                if($fileInfo->isFile() && in_array(strtolower($fileInfo->getFileName()), $loadedFiles)){
+                    $phpcsFile = $phpcs->processFile($fileInfo->getPathName());
+                    $reportData = $phpcs->reporting->prepareFileReport($phpcsFile);
+
+                    if (count($reportData['messages'])) {
+                        foreach ($reportData['messages'] as $line => $_messages) {
+                            foreach ($_messages as $message) {
+                                foreach ($message as $msg) {
+                                    $reports[] = array(
+                                        'filename' => str_replace(FCPATH, '', $reportData['filename']),
+                                        'filepath' => $reportData['filename'],
+                                        'severity' => $msg['type'],
+                                        'line' => $line,
+                                        'message' => $msg['message']
+                                    );
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return $reports;
+    }
 }
 
 $zre = new \ZRayExtension('CodeIgniter');
-
 $zre->setEnabledAfter('CI_Loader::initialize');
 
 $codeIgniter = new CodeIgniter();
 
-$zre->traceFunction('CI_Output::_display', function () {}, array($codeIgniter, 'init'));
+$zre->traceFunction('CI_Output::_display', function () {
+}, array($codeIgniter, 'init'));
 
 $zre->setMetadata(array(
     'logo' => __DIR__ . DIRECTORY_SEPARATOR . 'logo.png',

@@ -4,7 +4,6 @@ namespace ZRayExtension;
 
 class Module extends \ZRay\ZRayModule
 {
-
     public function config()
     {
         return array(
@@ -12,6 +11,14 @@ class Module extends \ZRay\ZRayModule
                 'name' => 'CodeIgniter',
             ),
             'panels' => array(
+                'codingstandard' => array(
+                    'display' => true,
+                    'logo' => 'images/codingstandard.png',
+                    'menuTitle' => 'Coding standard',
+                    'panelTitle' => 'Coding standard',
+                    'searchId' => 'codeigniter-coding-search',
+                    'pagerId' => 'codeigniter-coding-pager',
+                ),
                 'cache' => array(
                     'display' => true,
                     'logo' => 'images/cache.png',
