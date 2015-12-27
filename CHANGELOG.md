@@ -2,7 +2,7 @@
 
 Changes:
 
-- New **CodingStandard** panel : Check your Controllers, Models, Librairies, Helpers against Codeigniter coding standards, https://www.codeigniter.com/user_guide/general/styleguide.html
+- New **CodingStandard** panel : Verify if all Controllers, Models, Librairies and Helpers respects CodeIgniter coding standards, https://www.codeigniter.com/user_guide/general/styleguide.html
 
 ## 1.1.2 (2015-12-24)
 
