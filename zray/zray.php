@@ -194,7 +194,7 @@ class CodeIgniter
                             foreach ($_messages as $message) {
                                 foreach ($message as $msg) {
                                     $reports[] = array(
-                                        'filename' => str_replace(FCPATH, '', $reportData['filename']),
+                                        'filename' => str_replace(str_replace('\\', '/', FCPATH), '', str_replace('\\', '/', $reportData['filename'])),
                                         'filepath' => $reportData['filename'],
                                         'severity' => $msg['type'],
                                         'line' => $line,
