@@ -12,7 +12,7 @@ The Z-Ray CodeIgniter plugin provides valuable information on CodeIgniter applic
 - **Helpers**: displays the loaded helpers
 - **Request**: provides information on the current route of the CodeIgniter application, such as the controller name, the action name and the parameters
 - **Cache**: provides information about the cache, such as size, path, items, etc.
-- **Coding standard** : Verify if all Controllers, Models, Librairies and Helpers respects CodeIgniter coding standards, https://www.codeigniter.com/user_guide/general/styleguide.html
+- **Coding standard** : Verify if all controllers, codels, libraries and helpers conform with CodeIgniter coding standards as outlined in: https://www.codeigniter.com/user_guide/general/styleguide.html
 
 
 Installation
