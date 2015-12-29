@@ -2,13 +2,13 @@
 
 Changes:
 
-- New **CodingStandard** panel : Verify if all Controllers, Models, Librairies and Helpers respects CodeIgniter coding standards, https://www.codeigniter.com/user_guide/general/styleguide.html
+- New **CodingStandard** panel : Verify if all controllers, codels, libraries and helpers conform with CodeIgniter coding standards as outlined in: [https://www.codeigniter.com/user_guide/general/styleguide.html](https://www.codeigniter.com/user_guide/general/styleguide.html)
 
 ## 1.1.2 (2015-12-24)
 
 Bug fix:
 
-- The extension shows up everywhere
+- The extension is loaded on every PHP file
 
 ## 1.1.1 (2015-12-22)
 
